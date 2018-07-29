@@ -25,4 +25,15 @@ public class PersonFinderTest {
         List<Person> result = PersonFinder.findPeopleOlderThan(roster, 20);
         assertEquals(expResult, result);
     }
+
+    @org.junit.Test
+    public void testFindPeopleWithinAgeRange() {
+        Person jane = new Person("Jane", 25);
+        List<Person> expResult = new ArrayList<Person>();
+        expResult.add(jane);
+
+        List<Person> result = PersonFinder.findPeopleWithinAgeRange(roster, 20, 30);
+        assertEquals(expResult, result);
+    }
+
 }
