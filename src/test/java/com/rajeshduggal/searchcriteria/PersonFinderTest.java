@@ -27,4 +27,20 @@ public class PersonFinderTest {
                 (Person p) -> p.age >= 20 && p.age <= 30);
         assertEquals(expResult, result);
     }
+
+    @org.junit.Test
+    public void testsetEligibleFlagforPeopleWithinAgeRange() {
+        Person john = new Person("John", 15, false);
+        Person jane = new Person("Jane", 25, true);
+        List<Person> expResult = new ArrayList<Person>();
+        expResult.add(john);
+        expResult.add(jane);
+
+        List<Person> result;
+        result = PersonFinder.updatePeople(roster,
+                (Person p) -> p.age >= 20 && p.age <= 30,
+                p -> p.eligible = true);
+
+        assertEquals(expResult, result);
+    }
 }
