@@ -23,12 +23,8 @@ public class PersonFinderTest {
         expResult.add(jane);
 
         List<Person> result;
-        result = PersonFinder.findPeople(roster, new PersonFinder.Criteria() {
-            @Override
-            public boolean test(Person p) {
-                return p.age >= 20 && p.age <= 30;
-            }
-        });
+        result = PersonFinder.findPeople(roster,
+                (Person p) -> p.age >= 20 && p.age <= 30);
         assertEquals(expResult, result);
     }
 }

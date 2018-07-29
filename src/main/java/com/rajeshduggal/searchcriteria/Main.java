@@ -13,8 +13,8 @@ public class Main {
 
     public static void main(String[] args) {
 
-        List<Person> result = PersonFinder.findPeopleOlderThan(roster, 20);
-        System.out.println("People older than 20: " + result);
+//        List<Person> result = PersonFinder.findPeopleOlderThan(roster, 20);
+//        System.out.println("People older than 20: " + result);
 
     }
 }
