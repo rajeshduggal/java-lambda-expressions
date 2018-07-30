@@ -30,13 +30,16 @@ public class PersonFinder {
         return retval;
     }
 
-    static public List<Person> updatePeople(List<Person> roster, Predicate<Person> testCriteria, Function<Person, String> mapper, Consumer<String> block) {
-        List<Person> retval = new ArrayList();
-        for (Person p : roster) {
+    static public <X, Y> List<X> updatePeople(
+            List<X> roster,
+            Predicate<X> testCriteria,
+            Function<X, Y> mapper,
+            Consumer<X> block) {
+        List<X> retval = new ArrayList();
+        for (X p : roster) {
             if (testCriteria.test(p)) {
-                String data = mapper.apply(p);
-                block.accept(data);
-                p.eligible = true;
+                Y data = mapper.apply(p);
+                block.accept(p);
             }
             retval.add(p);
         }
