@@ -36,13 +36,18 @@ public class PersonFinder {
             Function<X, Y> mapper,
             Consumer<X> block) {
         List<X> retval = new ArrayList();
-        for (X p : roster) {
-            if (testCriteria.test(p)) {
-                Y data = mapper.apply(p);
-                block.accept(p);
-            }
-            retval.add(p);
-        }
+        roster
+            .stream()
+            .map((p) -> {
+                    if (testCriteria.test(p)) {
+                        Y data = mapper.apply(p);
+                        block.accept(p);
+                    }
+                    return p;
+                })
+            .forEachOrdered((p) -> {
+                retval.add(p);
+            });
         return retval;
     }
 }
