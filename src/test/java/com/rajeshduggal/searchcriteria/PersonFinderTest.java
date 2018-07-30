@@ -39,7 +39,8 @@ public class PersonFinderTest {
         List<Person> result;
         result = PersonFinder.updatePeople(roster,
                 (Person p) -> p.age >= 20 && p.age <= 30,
-                p -> p.eligible = true);
+                p -> p.name,
+                name -> System.out.println(name + " is eligible!"));
 
         assertEquals(expResult, result);
     }

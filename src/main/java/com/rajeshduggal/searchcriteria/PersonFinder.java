@@ -3,6 +3,7 @@ package com.rajeshduggal.searchcriteria;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Predicate;
 
 public class PersonFinder {
@@ -15,6 +16,10 @@ public class PersonFinder {
     //    void accept(T t);
     //}
 
+    //interface java.util.function.Function<T, R> {
+    //    R apply(T t);
+    //}
+
     static public List<Person> findPeople(List<Person> roster, Predicate<Person> testCriteria) {
         List<Person> retval = new ArrayList();
         for (Person p : roster) {
@@ -25,11 +30,13 @@ public class PersonFinder {
         return retval;
     }
 
-    static public List<Person> updatePeople(List<Person> roster, Predicate<Person> testCriteria, Consumer<Person> block) {
+    static public List<Person> updatePeople(List<Person> roster, Predicate<Person> testCriteria, Function<Person, String> mapper, Consumer<String> block) {
         List<Person> retval = new ArrayList();
         for (Person p : roster) {
             if (testCriteria.test(p)) {
-                block.accept(p);
+                String data = mapper.apply(p);
+                block.accept(data);
+                p.eligible = true;
             }
             retval.add(p);
         }
