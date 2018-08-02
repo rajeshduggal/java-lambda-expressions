@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toList;
 
 public class PersonFinder {
@@ -28,6 +29,17 @@ public class PersonFinder {
                 retval.add(p);
             }
         }
+        return retval;
+    }
+
+    static public String getFormattedNames(
+            List<Person> roster,
+            Predicate<Person> testCriteria) {
+        String retval = roster
+            .stream()
+            .filter(testCriteria)
+            .map(p -> p.name)
+            .collect(joining(", ","", "."));
         return retval;
     }
 
