@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import static java.util.stream.Collectors.toList;
 
 public class PersonFinder {
 
@@ -35,8 +36,7 @@ public class PersonFinder {
             Predicate<X> testCriteria,
             Function<X, Y> mapper,
             Consumer<X> block) {
-        List<X> retval = new ArrayList();
-        roster
+        List<X> retval = roster
             .stream()
             .map((p) -> {
                     if (testCriteria.test(p)) {
@@ -45,9 +45,7 @@ public class PersonFinder {
                     }
                     return p;
                 })
-            .forEachOrdered((p) -> {
-                retval.add(p);
-            });
+            .collect(toList());
         return retval;
     }
 }
